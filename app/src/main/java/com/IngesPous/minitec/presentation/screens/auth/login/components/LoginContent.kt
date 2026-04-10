@@ -35,6 +35,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.IngesPous.minitec.R
+import com.IngesPous.minitec.presentation.components.DefaultButton
 import com.IngesPous.minitec.presentation.components.DefaultTextField
 import com.IngesPous.minitec.ui.theme.PrussianBlue
 
@@ -69,7 +70,7 @@ fun LoginContent(paddingValues: PaddingValues){
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(330.dp),
+                    .height(350.dp),
                 shape = RoundedCornerShape(
                     topEnd = 40.dp,
                     topStart = 40.dp
@@ -111,14 +112,19 @@ fun LoginContent(paddingValues: PaddingValues){
 
 
                     )
-                    Button(
+                    //Spacer(modifier = Modifier.height(10.dp))
+                    //Genera un espacio entre un elemento y otro
+                    DefaultButton(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(top = 25.dp),
-                        onClick = { }) {
-                        Text(text = "LOGIN")
+                            .height(55.dp)
+                            //padding genera tamaño del boton el spacer de arriba tambien se desbloquea en caso de eliminar padding
+                            .padding(top = 15.dp),
+                        onClick = {},
+                        text = "LOGIN"
 
-                    }
+                    )
+                    Spacer(modifier = Modifier.height(10.dp))
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
