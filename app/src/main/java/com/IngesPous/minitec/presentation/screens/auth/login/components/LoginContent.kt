@@ -31,9 +31,11 @@ import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.IngesPous.minitec.R
+import com.IngesPous.minitec.presentation.components.DefaultTextField
 import com.IngesPous.minitec.ui.theme.PrussianBlue
 
 @Composable
@@ -79,7 +81,7 @@ fun LoginContent(paddingValues: PaddingValues){
 
                 ) {
                 Column(
-                    modifier = Modifier.padding(30.dp, 30.dp, 30.dp )
+                    modifier = Modifier.padding(60.dp, 30.dp, 60.dp )
                 ) {
                     Text(
                         modifier = Modifier.padding(bottom = 20.dp),
@@ -89,44 +91,25 @@ fun LoginContent(paddingValues: PaddingValues){
                         color = Color.Black
                     )
                     //OutlinedTextField genera bordes en los campos
-                    TextField(
+                    DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
                         value = "",
                         onValueChange = {},
-                        label = {
-                            Text(text = "Correo Electronico")
-                        },
-                        // trallingIcon izquierda
-                        leadingIcon = {
-                            Icon(
-                                imageVector = Icons.Default.Email,
-                                contentDescription = "Email Icon",
-                                tint = PrussianBlue
-                                //tint=Color.cyan (genera color en los iconos)
-                            )
-                        }//,
-                        //colors = TextFieldDefaults.Colors(
-                        //    backgroundColor = Color.White
-                        // CAMBIA DE COLOR EL RECUADRO DE TEXTO
+                        label = "Correo electronico",
+                        icon = Icons.Default.Email,
+                        keyboardType = KeyboardType.Email
 
 
                     )
-                    TextField(
+                    DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
                         value = "",
                         onValueChange = {},
-                        label = {
-                            Text(text = "Contraseña")
-                        },
-                        leadingIcon = {
-                            Icon(
-                                imageVector = Icons.Default.Lock,
-                                contentDescription = "Email Icon",
-                                tint = PrussianBlue
-                            )
+                        label = "Contraseña",
+                        icon = Icons.Default.Lock,
+                        keyboardType = KeyboardType.Password
 
 
-                        }
                     )
                     Button(
                         modifier = Modifier
