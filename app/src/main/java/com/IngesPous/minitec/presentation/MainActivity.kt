@@ -39,13 +39,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.IngesPous.minitec.R
+import com.IngesPous.minitec.presentation.navigation.graph.RootNavGraph
 import com.IngesPous.minitec.presentation.screens.auth.login.LoginScreen
 import com.IngesPous.minitec.ui.theme.MiniTecTheme
 import com.IngesPous.minitec.ui.theme.PrussianBlue
 
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var navController: NavHostController
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -54,7 +61,8 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 
                     Box(modifier = Modifier.padding(paddingValues = innerPadding)){
-                        LoginScreen()
+                        navController = rememberNavController()
+                        RootNavGraph(navController = navController)
                     }
 
                 }

@@ -1,6 +1,7 @@
 package com.IngesPous.minitec.presentation.screens.auth.login.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,13 +35,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.IngesPous.minitec.R
 import com.IngesPous.minitec.presentation.components.DefaultButton
 import com.IngesPous.minitec.presentation.components.DefaultTextField
+import com.IngesPous.minitec.presentation.navigation.screen.AuthScreen
 import com.IngesPous.minitec.ui.theme.PrussianBlue
 
 @Composable
-fun LoginContent(paddingValues: PaddingValues){
+fun LoginContent(navController: NavHostController, paddingValues: PaddingValues){
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
             modifier  = Modifier.fillMaxSize(),
@@ -134,7 +137,9 @@ fun LoginContent(paddingValues: PaddingValues){
                         ) {
                         Text(text = "No tienes cuenta? ")
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text(text = "Registrate",
+                        Text(
+                            modifier = Modifier.clickable { navController.navigate(route = AuthScreen.Register.route) },
+                            text = "Registrate",
                             color = PrussianBlue
                         )
 
