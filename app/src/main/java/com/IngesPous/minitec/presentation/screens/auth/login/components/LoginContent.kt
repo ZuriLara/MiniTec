@@ -121,11 +121,9 @@ fun LoginContent(navController: NavHostController, paddingValues: PaddingValues)
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(55.dp)
-                            //padding genera tamaño del boton el spacer de arriba tambien se desbloquea en caso de eliminar padding
                             .padding(top = 15.dp),
-                        onClick = {},
-                        text = "LOGIN"
-
+                        text = "LOGIN",
+                        onClick = { }
                     )
                     Spacer(modifier = Modifier.height(10.dp))
                     Row(
@@ -154,3 +152,4 @@ fun LoginContent(navController: NavHostController, paddingValues: PaddingValues)
 
 
 }
+
