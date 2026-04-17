@@ -22,7 +22,6 @@ fun DefaultButton(
     text: String,
     onClick: () -> Unit,
     color: Color = PrussianBlue,
-    icon: ImageVector = Icons.Default.ArrowForward
 
 ){
     Button(
@@ -31,10 +30,6 @@ fun DefaultButton(
         colors = ButtonDefaults.buttonColors(containerColor = color)
 
     ) {
-        Icon(
-            imageVector = icon,
-            contentDescription = ""
-        )
         Spacer(modifier = Modifier.width(10.dp))
         Text(text = text)
 

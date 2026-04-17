@@ -19,20 +19,16 @@ import com.IngesPous.minitec.ui.theme.PrussianBlue
 fun DefaultTextField(
     modifier: Modifier,
     value: String,
-    //evento que se ejecuta cuando el valor cambia
     onValueChange: (String) -> Unit,
-    //mostrar texto
     label: String,
     icon: ImageVector,
     keyboardType: KeyboardType = KeyboardType.Text
-
 ) {
     TextField(
-        modifier = Modifier,
+        modifier = modifier, // <--- CORRECCIÓN AQUÍ
         value = value,
         onValueChange = { text ->
             onValueChange(text)
-
         },
         label = {
             Text(text = label )

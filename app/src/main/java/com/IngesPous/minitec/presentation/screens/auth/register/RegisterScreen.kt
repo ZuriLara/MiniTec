@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.IngesPous.minitec.presentation.components.DefaultTopBar
+import com.IngesPous.minitec.presentation.screens.auth.register.components.RegisterContent
 import com.IngesPous.minitec.ui.theme.MiniTecTheme
 import com.IngesPous.minitec.ui.theme.PrussianBlue
 
@@ -35,10 +36,7 @@ fun RegisterScreen(navController: NavHostController){
 
         }
     ) { paddingValues ->
-        Text(
-            modifier = Modifier.padding(paddingValues),
-            text = "Hola"
-        )
+        RegisterContent(paddingValues= paddingValues)
     }
 }
 @Preview(showBackground = true, showSystemUi = true)
