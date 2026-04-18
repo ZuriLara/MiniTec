@@ -146,7 +146,7 @@ fun RegisterContent(paddingValues: PaddingValues){
                         modifier = Modifier.fillMaxWidth(),
                         value = "",
                         onValueChange = {},
-                        label = "Confirmar contraseña",
+                        label = "Confirmar contraseñapou5",
                         icon = Icons.Outlined.Lock,
                         keyboardType = KeyboardType.Password
                     )

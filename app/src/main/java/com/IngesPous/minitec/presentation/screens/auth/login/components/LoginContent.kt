@@ -44,6 +44,7 @@ import com.IngesPous.minitec.ui.theme.PrussianBlue
 
 @Composable
 fun LoginContent(navController: NavHostController, paddingValues: PaddingValues){
+
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
             modifier  = Modifier.fillMaxSize(),
