@@ -13,7 +13,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
@@ -39,18 +41,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.IngesPous.minitec.R
 import com.IngesPous.minitec.presentation.components.DefaultButton
 import com.IngesPous.minitec.presentation.components.DefaultTextField
 import com.IngesPous.minitec.presentation.navigation.screen.AuthScreen
+import com.IngesPous.minitec.presentation.screens.auth.login.LoginMinitec
 import com.IngesPous.minitec.ui.theme.PrussianBlue
 
 @Composable
-fun LoginContent(navController: NavHostController, paddingValues: PaddingValues){
+fun LoginContent(navController: NavHostController, paddingValues: PaddingValues, vm: LoginMinitec = hiltViewModel()){
 
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -89,7 +91,9 @@ fun LoginContent(navController: NavHostController, paddingValues: PaddingValues)
                 )
             ) {
                 Column(
-                    modifier = Modifier.padding(horizontal = 35.dp, vertical = 30.dp)
+                    modifier = Modifier
+                        .padding(horizontal = 35.dp, vertical = 30.dp)
+                        .verticalScroll(rememberScrollState())
                 ) {
                     Text(
                         modifier = Modifier.padding(bottom = 20.dp),
@@ -100,8 +104,8 @@ fun LoginContent(navController: NavHostController, paddingValues: PaddingValues)
                     )
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = email,
-                        onValueChange = { email = it },
+                        value = vm.email,
+                        onValueChange = { vm.email = it },
                         label = "Correo electrónico",
                         icon = Icons.Default.Email,
                         keyboardType = KeyboardType.Email
@@ -109,8 +113,8 @@ fun LoginContent(navController: NavHostController, paddingValues: PaddingValues)
                     Spacer(modifier = Modifier.height(10.dp))
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = password,
-                        onValueChange = { password = it },
+                        value = vm.password,
+                        onValueChange = { vm.password = it },
                         label = "Contraseña",
                         icon = Icons.Default.Lock,
                         keyboardType = KeyboardType.Password
