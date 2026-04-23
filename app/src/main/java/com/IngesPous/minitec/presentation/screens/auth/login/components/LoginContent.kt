@@ -53,6 +53,7 @@ import com.IngesPous.minitec.ui.theme.PrussianBlue
 @Composable
 fun LoginContent(navController: NavHostController, paddingValues: PaddingValues, vm: LoginMinitec = hiltViewModel()){
 
+    val state = vm.state
 
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -104,8 +105,8 @@ fun LoginContent(navController: NavHostController, paddingValues: PaddingValues,
                     )
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = vm.email,
-                        onValueChange = { vm.email = it },
+                        value = state.email,
+                        onValueChange = { vm.onEmailInput(it) },
                         label = "Correo electrónico",
                         icon = Icons.Default.Email,
                         keyboardType = KeyboardType.Email
@@ -113,8 +114,8 @@ fun LoginContent(navController: NavHostController, paddingValues: PaddingValues,
                     Spacer(modifier = Modifier.height(10.dp))
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = vm.password,
-                        onValueChange = { vm.password = it },
+                        value = state.password,
+                        onValueChange = { vm.onPasswordInput(it) },
                         label = "Contraseña",
                         icon = Icons.Default.Lock,
                         keyboardType = KeyboardType.Password
