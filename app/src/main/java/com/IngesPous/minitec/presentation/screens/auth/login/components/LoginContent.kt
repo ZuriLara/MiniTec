@@ -24,6 +24,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -44,6 +48,9 @@ import com.IngesPous.minitec.ui.theme.PrussianBlue
 
 @Composable
 fun LoginContent(navController: NavHostController, paddingValues: PaddingValues){
+
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -72,80 +79,66 @@ fun LoginContent(navController: NavHostController, paddingValues: PaddingValues)
             )
             Spacer(modifier = Modifier.weight(1f))
             Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(350.dp),
+                modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(
                     topEnd = 40.dp,
                     topStart = 40.dp
                 ),
-                //Vuelve transparente el fondo de la tarjeta
                 colors = CardDefaults.cardColors(
-
-                    containerColor = Color.White.copy(alpha = 0.7f)
+                    containerColor = Color.White.copy(alpha = 0.85f)
                 )
-
-                ) {
+            ) {
                 Column(
-                    modifier = Modifier.padding(60.dp, 30.dp, 60.dp )
+                    modifier = Modifier.padding(horizontal = 35.dp, vertical = 30.dp)
                 ) {
                     Text(
                         modifier = Modifier.padding(bottom = 20.dp),
-                        text = "INICIAR SESION",
+                        text = "INICIAR SESIÓN",
                         fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp,
+                        fontSize = 22.sp,
                         color = Color.Black
                     )
-                    //OutlinedTextField genera bordes en los campos
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = "",
-                        onValueChange = {},
-                        label = "Correo electronico",
+                        value = email,
+                        onValueChange = { email = it },
+                        label = "Correo electrónico",
                         icon = Icons.Default.Email,
                         keyboardType = KeyboardType.Email
-
-
                     )
+                    Spacer(modifier = Modifier.height(10.dp))
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = "",
-                        onValueChange = {},
+                        value = password,
+                        onValueChange = { password = it },
                         label = "Contraseña",
                         icon = Icons.Default.Lock,
                         keyboardType = KeyboardType.Password
-
-
                     )
-                    //Spacer(modifier = Modifier.height(10.dp))
-                    //Genera un espacio entre un elemento y otro
+                    Spacer(modifier = Modifier.height(20.dp))
                     DefaultButton(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(55.dp)
-                            .padding(top = 15.dp),
+                        modifier = Modifier.fillMaxWidth().height(50.dp),
                         text = "LOGIN",
                         onClick = { }
                     )
-                    Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(15.dp))
                     Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 17.dp),
+                        modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center,
-
-                        ) {
-                        Text(text = "No tienes cuenta? ")
-                        Spacer(modifier = Modifier.width(6.dp))
+                    ) {
+                        Text(text = "¿No tienes cuenta? ")
                         Text(
                             modifier = Modifier.clickable { navController.navigate(route = AuthScreen.Register.route) },
-                            text = "Registrate",
-                            color = PrussianBlue
+                            text = "Regístrate",
+                            color = PrussianBlue,
+                            fontWeight = FontWeight.Bold
                         )
-
                     }
-
                 }
+
+
+
+
 
             }
 
