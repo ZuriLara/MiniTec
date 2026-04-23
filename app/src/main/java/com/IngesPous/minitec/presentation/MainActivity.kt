@@ -46,7 +46,9 @@ import com.IngesPous.minitec.presentation.navigation.graph.RootNavGraph
 import com.IngesPous.minitec.presentation.screens.auth.login.LoginScreen
 import com.IngesPous.minitec.ui.theme.MiniTecTheme
 import com.IngesPous.minitec.ui.theme.PrussianBlue
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 
 class MainActivity : ComponentActivity() {
 
