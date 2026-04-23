@@ -13,6 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import com.IngesPous.minitec.ui.theme.PrussianBlue
 
 @Composable
@@ -22,7 +24,8 @@ fun DefaultTextField(
     onValueChange: (String) -> Unit,
     label: String,
     icon: ImageVector,
-    keyboardType: KeyboardType = KeyboardType.Text
+    keyboardType: KeyboardType = KeyboardType.Text,
+    hideText: Boolean = false
 ) {
     TextField(
         modifier = modifier, // <--- CORRECCIÓN AQUÍ
@@ -42,8 +45,9 @@ fun DefaultTextField(
                 //tint=Color.cyan (genera color en los iconos)
             )
         },
-        keyboardOptions = KeyboardOptions(keyboardType = keyboardType)
 
+        keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
+        visualTransformation = if (hideText) PasswordVisualTransformation() else VisualTransformation.None
         //colors = TextFieldDefaults.Colors(
         //    backgroundColor = Color.White
         // CAMBIA DE COLOR EL RECUADRO DE TEXTO

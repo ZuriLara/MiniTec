@@ -35,12 +35,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.IngesPous.minitec.R
 import com.IngesPous.minitec.presentation.components.DefaultButton
 import com.IngesPous.minitec.presentation.components.DefaultTextField
+import com.IngesPous.minitec.presentation.screens.auth.register.RegisterViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 
 @Composable
-fun RegisterContent(paddingValues: PaddingValues){
+fun RegisterContent(paddingValues: PaddingValues, vm: RegisterViewModel = hiltViewModel()){
+    val state = vm.state
+
     Box(modifier = Modifier
         .padding(paddingValues= paddingValues)
         .fillMaxSize()
@@ -101,24 +106,24 @@ fun RegisterContent(paddingValues: PaddingValues){
                     )
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = "",
-                        onValueChange = {},
+                        value = state.name,
+                        onValueChange = {vm.onNameInput(it)},
                         label = "Nombre",
                         icon = Icons.Default.Person
                     )
-                    Spacer(modifier = Modifier.height(5.dp)) // <--- ESTO DA EL "AIRE" QUE FALTA
+                    Spacer(modifier = Modifier.height(5.dp)) // <--- ESTO DA EL "AIRE" QUE FALTA ?
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = "",
-                        onValueChange = {},
+                        value = state.lastname,
+                        onValueChange = {vm.onLastnameInput(it)},
                         label = "Apellidos",
                         icon = Icons.Outlined.Person
                     )
                     Spacer(modifier = Modifier.height(5.dp))
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = "",
-                        onValueChange = {},
+                        value = state.email,
+                        onValueChange = {vm.onEmailInput(it)},
                         label = "Correo electronico",
                         icon = Icons.Default.Email,
                         keyboardType = KeyboardType.Email
@@ -126,8 +131,8 @@ fun RegisterContent(paddingValues: PaddingValues){
                     Spacer(modifier = Modifier.height(5.dp))
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = "",
-                        onValueChange = {},
+                        value = state.matriculate,
+                        onValueChange = {vm.onMatriculateInput(it)},
                         label = "Matricula",
                         icon = Icons.Default.Badge,
                         keyboardType = KeyboardType.Number
@@ -135,20 +140,22 @@ fun RegisterContent(paddingValues: PaddingValues){
                     Spacer(modifier = Modifier.height(5.dp))
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = "",
-                        onValueChange = {},
+                        value = state.password,
+                        onValueChange = {vm.onPasswordInput(it)},
                         label = "Contraseña",
                         icon = Icons.Default.Lock,
-                        keyboardType = KeyboardType.Password
+                        keyboardType = KeyboardType.Password,
+                        hideText = true
                     )
                     Spacer(modifier = Modifier.height(5.dp))
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = "",
-                        onValueChange = {},
+                        value = state.confirmPassword,
+                        onValueChange = {vm.onConfirmPasswordInput(it)},
                         label = "Confirmar contraseñapou5",
                         icon = Icons.Outlined.Lock,
-                        keyboardType = KeyboardType.Password
+                        keyboardType = KeyboardType.Password,
+                        hideText = true
                     )
                     DefaultButton(
                         modifier = Modifier
