@@ -1,5 +1,6 @@
 package com.IngesPous.minitec.presentation.screens.auth.login.components
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -26,6 +27,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,6 +38,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -54,6 +57,12 @@ import com.IngesPous.minitec.ui.theme.PrussianBlue
 fun LoginContent(navController: NavHostController, paddingValues: PaddingValues, vm: LoginMinitec = hiltViewModel()){
 
     val state = vm.state
+    val context = LocalContext.current
+    LaunchedEffect(key1 = vm.errorMessage){
+        if (vm.errorMessage != ""){
+            Toast.makeText(context, vm.errorMessage, Toast.LENGTH_LONG).show()
+        }
+    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -118,13 +127,15 @@ fun LoginContent(navController: NavHostController, paddingValues: PaddingValues,
                         onValueChange = { vm.onPasswordInput(it) },
                         label = "Contraseña",
                         icon = Icons.Default.Lock,
-                        keyboardType = KeyboardType.Password
+                        keyboardType = KeyboardType.Password,
+                        hideText = true
+
                     )
                     Spacer(modifier = Modifier.height(20.dp))
                     DefaultButton(
                         modifier = Modifier.fillMaxWidth().height(50.dp),
                         text = "LOGIN",
-                        onClick = { }
+                        onClick = {vm.validateForm()}
                     )
                     Spacer(modifier = Modifier.height(15.dp))
                     Row(
