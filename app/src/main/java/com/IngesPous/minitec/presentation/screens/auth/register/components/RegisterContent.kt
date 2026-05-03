@@ -1,7 +1,5 @@
 package com.IngesPous.minitec.presentation.screens.auth.register.components
 
-import android.R.attr.contentDescription
-import android.R.attr.top
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -42,16 +40,16 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.IngesPous.minitec.R
 import com.IngesPous.minitec.presentation.components.DefaultButton
 import com.IngesPous.minitec.presentation.components.DefaultTextField
-import com.IngesPous.minitec.presentation.screens.auth.register.RegisterViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.IngesPous.minitec.presentation.screens.auth.register.RegisterMiniTec
 
 @Composable
-fun RegisterContent(paddingValues: PaddingValues, vm: RegisterViewModel = hiltViewModel()){
+fun RegisterContent(paddingValues: PaddingValues, vm: RegisterMiniTec = hiltViewModel()){
     val state = vm.state
     val context = LocalContext.current
     LaunchedEffect(key1 = vm.errorMessage){
         if (vm.errorMessage != ""){
             Toast.makeText(context, vm.errorMessage, Toast.LENGTH_LONG).show()
+            vm.errorMessage = ""
         }
     }
 
@@ -172,7 +170,7 @@ fun RegisterContent(paddingValues: PaddingValues, vm: RegisterViewModel = hiltVi
                             .height(55.dp)
                             .padding(top = 15.dp),
                         text = "CONTINUAR",
-                        onClick = {vm.validateForm()}
+                        onClick = {vm.register()}
                     )
                 }
             } 

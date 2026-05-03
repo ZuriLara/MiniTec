@@ -1,43 +1,28 @@
-package com.IngesPous.minitec.presentation.screens.auth.login.components
+package com.IngesPous.minitec.presentation.screens.auth.register.components
 
 import android.widget.Toast
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.IngesPous.minitec.domain.util.Resource
 import com.IngesPous.minitec.presentation.components.ProgressBar
 import com.IngesPous.minitec.presentation.navigation.screen.AuthScreen
-import com.IngesPous.minitec.presentation.screens.auth.login.LoginMinitec
+import com.IngesPous.minitec.presentation.screens.auth.register.RegisterMiniTec
 
 @Composable
-fun Login(navController: NavHostController, vm: LoginMinitec = hiltViewModel()) {
-    when(val response = vm.loginResponse){
-        is Resource.Loading -> {
-            ProgressBar()
-        }
-
+fun Register(navController: NavHostController, vm: RegisterMiniTec = hiltViewModel()){
+    when(val response = vm.registerResponse ) {
+        Resource.Loading -> { ProgressBar() }
         is Resource.Success -> {
-            LaunchedEffect(Unit){
-                navController.navigate(route = AuthScreen.Home.route)
-            }
-
+            navController.navigate(route = AuthScreen.Home.route)
         }
-
         is Resource.Failure -> {
             Toast.makeText(LocalContext.current, response.message, Toast.LENGTH_SHORT).show()
         }
-
         else -> {
             if (response != null){
                 Toast.makeText(LocalContext.current, "Hubo un error desconocido", Toast.LENGTH_SHORT).show()
-
             }
         }
     }
