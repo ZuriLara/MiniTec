@@ -12,6 +12,7 @@ import com.IngesPous.minitec.domain.model.AuthResponse
 import com.IngesPous.minitec.domain.useCase.auth.AuthUseCase
 import com.IngesPous.minitec.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,7 +24,7 @@ class LoginMinitec @Inject constructor(private val AuthUseCase: AuthUseCase): Vi
     //var password by mutableStateOf("")
 
     var errorMessage by mutableStateOf("")
-        private set
+
 
     var loginResponse by mutableStateOf<Resource< AuthResponse>?>(null);
 

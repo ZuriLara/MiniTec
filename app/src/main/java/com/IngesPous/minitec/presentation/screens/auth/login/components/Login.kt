@@ -18,7 +18,7 @@ import com.IngesPous.minitec.presentation.screens.auth.login.LoginMinitec
 @Composable
 fun Login(navController: NavHostController, vm: LoginMinitec = hiltViewModel()) {
     when(val response = vm.loginResponse){
-        Resource.Loading -> {
+        is Resource.Loading -> {
             Box(Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
             ) {
@@ -34,7 +34,7 @@ fun Login(navController: NavHostController, vm: LoginMinitec = hiltViewModel()) 
         }
 
         is Resource.Failure -> {
-            Toast.makeText(LocalContext.current, response.exception?.message ?: "Error desconocido", Toast.LENGTH_SHORT).show()
+            Toast.makeText(LocalContext.current, response.message, Toast.LENGTH_SHORT).show()
         }
 
         else -> {

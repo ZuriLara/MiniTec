@@ -12,6 +12,8 @@ lifecycleRuntimeKtx = "2.7.0"
 activityCompose = "1.8.2"
 kotlin = "2.0.21"
 composeBom = "2024.11.00"
+moshiKotlin = "2.0.0-alpha.1"
+moshiKotlinVersion = "1.14.0"
 navigationCompose = "2.7.7"
 ksp = "2.0.21-1.0.27"
 retrofit = "2.9.0"
@@ -38,6 +40,8 @@ androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshiKotlin" }
+moshi-kotlin-v1140 = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshiKotlinVersion" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 
 [plugins]

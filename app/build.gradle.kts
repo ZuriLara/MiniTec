@@ -64,6 +64,8 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.gson)
 
+    implementation(libs.moshi.kotlin.v1140)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
