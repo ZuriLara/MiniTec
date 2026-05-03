@@ -4,23 +4,19 @@ import android.util.Log
 import android.util.Patterns
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.IngesPous.minitec.core.Config
-import com.IngesPous.minitec.data.service.AuthService
-import com.IngesPous.minitec.domain.model.LoginRequest
-import com.IngesPous.minitec.presentation.screens.auth.login.LoginState
+import com.IngesPous.minitec.domain.model.AuthResponse
+
+import com.IngesPous.minitec.domain.useCase.auth.AuthUseCase
+import com.IngesPous.minitec.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginMinitec @Inject constructor(): ViewModel() {
+class LoginMinitec @Inject constructor(private val AuthUseCase: AuthUseCase): ViewModel() {
     var state by mutableStateOf(LoginState())
         private set
     //var email by mutableStateOf("")
@@ -29,7 +25,7 @@ class LoginMinitec @Inject constructor(): ViewModel() {
     var errorMessage by mutableStateOf("")
         private set
 
-
+    var loginResponse by mutableStateOf<Resource< AuthResponse>?>(null);
 
     fun onEmailInput(email: String){
         state = state.copy(email = email)
@@ -40,14 +36,10 @@ class LoginMinitec @Inject constructor(): ViewModel() {
 
     fun login() = viewModelScope.launch {
         if (isValidForm()) {
-            val retrofit = Retrofit
-                .Builder()
-                .baseUrl(Config.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-            val authService = retrofit.create(AuthService::class.java)
-            val result = authService.login(LoginRequest(state.email, state.password))
-            Log.d("LoginMiniTec", "Result: ${result.body()}");
+            loginResponse = Resource.Loading;
+            val result = AuthUseCase.login(state.email, state.password)
+            loginResponse = result;
+            Log.d("LoginMiniTec", "Result: ${loginResponse}");
 
         }
     }

@@ -8,6 +8,7 @@ import com.IngesPous.minitec.presentation.navigation.Graph
 import com.IngesPous.minitec.presentation.navigation.screen.AuthScreen
 import com.IngesPous.minitec.presentation.screens.auth.login.LoginScreen
 import com.IngesPous.minitec.presentation.screens.auth.register.RegisterScreen
+import com.IngesPous.minitec.presentation.screens.home.HomeScreen
 
 fun NavGraphBuilder.AuthNavGraph(navController: NavHostController) {
     navigation(
@@ -20,6 +21,10 @@ fun NavGraphBuilder.AuthNavGraph(navController: NavHostController) {
 
         composable(route = AuthScreen.Register.route) {
             RegisterScreen(navController)
+        }
+
+        composable(route = AuthScreen.Home.route) {
+            HomeScreen(navController)
         }
 
     }
